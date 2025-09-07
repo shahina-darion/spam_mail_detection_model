@@ -1,44 +1,33 @@
-# spam_mail_detection_model
-# Spam Mail Detection using Logistic Regression
+##  Spam Mail Detection using Logistic Regression
 
-# Step 1: Import Libraries
-# We use pandas & numpy for data handling,
-# scikit-learn for train-test split, TF-IDF vectorization, logistic regression, and evaluation.
-# Metrics used: accuracy score & classification report.
- 
-# Step 2: Load Dataset
-# Load the SMS Spam Collection dataset.
-# - If using Kaggle CSV -> only first 2 columns are required.
-# - If using UCI dataset -> it's tab-separated with 2 columns (label, message).
+### Step 1: Import Libraries
+Use pandas, numpy, and sklearn for the ML pipeline.
 
-# Step 3: Encode Labels
-# - Labels are mapped: 'ham' -> 0, 'spam' -> 1
-# - Drop rows with NaN values after mapping (to ensure clean data).
+### Step 2: Load Dataset
+Load **spam.csv** or **SMSSpamCollection**.  
+Columns: `label` (ham/spam), `message` (text).
 
-# Step 4: Text Preprocessing
-# - Drop empty rows in dataset
-# - Reset index after cleaning
-# - Convert text messages into numerical features using TF-IDF
-#   (stop words removed, max_features=3000 for efficiency)
+### Step 3: Encode Labels
+Map labels → ham = 0, spam = 1.  
+Drop empty/invalid rows to avoid NaN issues.
 
-# Step 5: Split Dataset
-# - Split features (X) and labels (y) into train and test sets
-# - 80% training, 20% testing
-# - stratify=y ensures balanced spam/ham distribution
-# - random_state=42 for reproducibility
+### Step 4: Text Preprocessing
+Convert messages into features using **TF-IDF vectorizer**  
+(max_features=3000, remove stopwords).
 
-# Step 6: Train Logistic Regression Model
-# - Logistic Regression is trained with liblinear solver
-# - max_iter=200 ensures convergence
+### Step 5: Split Dataset
+Train = 80%, Test = 20%.  
+Use `stratify=y` to balance spam/ham ratio.
 
-# Step 7: Predict
-# - Model predicts labels for X_test
+### Step 6: Train Model
+Train **Logistic Regression** (`solver='liblinear'`).
 
-# Step 8: Evaluate
-# - Accuracy score: overall performance of the classifier
-# - Classification report: precision, recall, F1-score for spam and ham
+### Step 7: Predictions
+Predict spam/ham on the test set.
 
-# Step 9: Test on New Messages
-# - A helper function 'predict_message' transforms any new text
-#   into TF-IDF features and uses the trained model to classify.
-# - Example predictions shown for spam and ham messages.
+### Step 8: Evaluation
+Check **accuracy** and **classification report**  
+(precision, recall, f1-score).
+
+### Step 9: Custom Testing
+Use `predict_message()` to classify new SMS as **Spam** or **Ham**.
